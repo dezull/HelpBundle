@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Help Browser{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/dezullhelp/css/layout.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="bodyWrapper">
+            <div id="header">
+                {% block header %}
+                    <h1>Help Browser</h1>
+                {% endblock %}
+            </div>
+            <div id="contentWrapper">
+                {% block contentWrapper %}
+                    <div id="sidebar">
+                        {% block sidebar %}
+                            {% render "DezullHelpBundle:Browser:topicTree" %}
+                        {% endblock %}
+                    </div>
+                    <div id="content">
+                        {% block content %}{% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+            <div id="footer">
+                {% block footer %}
+                    <p>Copyright &copy;</p>
+                {% endblock %}
+            </div>
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,21 @@
+#header {
+}
+
+#footer {
+    clear: both;
+}
+
+#contentWrapper {
+    float: left;
+}
+
+#content {
+    clear: right;
+    float: left;
+}
+
+#sidebar {
+    clear: left;
+    float: left;
+    width: 200px;
+}

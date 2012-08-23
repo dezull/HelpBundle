@@ -1,0 +1,16 @@
+<h1>HelpTopic creation</h1>
+
+<form action="{{ path('dezull_help_topic_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('dezull_help_topic') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

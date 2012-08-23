@@ -1,0 +1,13 @@
+{% extends "DezullHelpBundle::layout.html.twig" %}
+
+{% block content %}
+    {% if topic is not null %}
+        <h2>{{ topic.title }}</h2>
+        <div class="topicContent">
+            {{ topic.content }}
+        </div>
+    {% else %}
+        <h2>Help Browser</h2>
+        <p>Choose a topic from the left sidebar</p>
+    {% endif %}
+{% endblock %}

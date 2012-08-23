@@ -1,0 +1,4 @@
+DezullHelpBundle:
+    resource: "@DezullHelpBundle/Controller/"
+    type:     annotation
+    prefix:   /
