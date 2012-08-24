@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Dezull\Bundle\HelpBundle\Entity\HelpTopic;
 use Dezull\Bundle\HelpBundle\Form\HelpTopicType;
 
@@ -20,7 +22,7 @@ class BrowserController extends Controller
      * @param string $title Topic title
      *
      * @Route("/", name="dezull_help_browser_index_notitle")
-     * @Route("/{title}", name="dezull_help_browser_index")
+     * @Route("/!{title}", name="dezull_help_browser_index")
      * @Template()
      */
     public function indexAction($title = null)
@@ -54,5 +56,57 @@ class BrowserController extends Controller
         }
 
         return compact('tree');
+    }
+
+    /**
+     * Handles image upload
+     *
+     * @Route("/upload-image", name="dezull_help_image_upload")
+     */
+    public function uploadImageAction(Request $request)
+    {
+        $funcNum = $request->query->get('CKEditorFuncNum');
+        $CKEditor = $request->query->get('CKEditor');
+        $langCode = $request->query->get('langCode');
+
+        $uploaded = $request->files->get('upload', null);
+        $path = '';
+
+        // Client-visible message
+        $message = '';
+
+        if ($uploaded === null) {
+            $message = 'File not uploaded';
+        } else {
+            try {
+                $path = $this->handleUploadedImage($uploaded);
+            } catch(\Exception $e) {
+                $message = 'Could not upload the image';
+            }
+        }
+
+        return new Response("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$path', '$message');</script>");
+    }
+
+    private function handleUploadedImage($uploaded)
+    {
+        $uploadDir = $this->get('kernel')->getRootDir() . '/../web/upload';
+
+        // TODO: inject acceptable mimes
+        $mime = $uploaded->getMimeType();
+        $acceptableMimes = array('image/png', 'image/jpeg');
+        if (!in_array($mime, $acceptableMimes)) {
+            throw new \Exception("Invalid MIME type: $mime");
+        }
+
+        $hash = \md5($uploaded->getRealPath());
+        $fileName = $hash . '.' . preg_replace("/^.+\//", '', $mime);
+        try {
+            $uploaded->move($uploadDir, $fileName);
+        } catch (\Symfony\Component\HttpFoundation\File\Exception\FileException $e) {
+            throw $e;
+        }
+
+        return '/upload/' . $fileName;
     }
 }

@@ -11,7 +11,21 @@ class HelpTopicType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
+            // ->add('content')
+            ->add('content', 'ckeditor', array(
+                'transformers'           => array('strip_js', 'strip_css', 'strip_comments'),
+                'toolbar'                => array('document', 'insert', 'basicstyles', 'paragraph'),
+                'toolbar_groups'         => array(
+                    'document' => array('Source'),
+                    'insert' => array('Image'),
+                ),
+                'ui_color'               => '#fff',
+                'startup_outline_blocks' => false,
+                'width'                  => '400',
+                'height'                 => '200',
+                'language'               => 'en-uk',
+                'filebrowser_image_upload_url'   => '/help/upload-image',
+            ))
             ->add('category', 'entity', array(
                 'class' => 'DezullHelpBundle:HelpCategory',
                 'property' => 'name',
