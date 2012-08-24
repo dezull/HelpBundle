@@ -7,6 +7,11 @@
     <parameters>
         <parameter key="dezull_help.image.dir">%kernel.root_dir%/../web/upload/help</parameter>
         <parameter key="dezull_help.image.baseurl">/upload/help</parameter>
+        <parameter key="dezull_help.image.mimetypes" type="collection">
+            <parameter>image/png</parameter>
+            <parameter>image/jpeg</parameter>
+            <parameter>image/gif</parameter>
+        </parameter>
     </parameters>
 
     <!--

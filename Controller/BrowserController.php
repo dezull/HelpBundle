@@ -97,9 +97,8 @@ class BrowserController extends Controller
             \mkdir($uploadDir, 0755, true);
         }
 
-        // TODO: inject acceptable mimes
         $mime = $uploaded->getMimeType();
-        $acceptableMimes = array('image/png', 'image/jpeg');
+        $acceptableMimes = $c->getParameter('dezull_help.image.mimetypes');
         if (!in_array($mime, $acceptableMimes)) {
             throw new \Exception("Invalid MIME type: $mime");
         }
