@@ -63,7 +63,7 @@ class HelpTopicController extends Controller
     public function newAction()
     {
         $entity = new HelpTopic();
-        $form   = $this->createForm($this->get('dezull_help.topic.type'), $entity);
+        $form   = $this->createForm($this->getForm(), $entity);
 
         return array(
             'entity' => $entity,
@@ -82,7 +82,7 @@ class HelpTopicController extends Controller
     {
         $entity  = new HelpTopic();
         $request = $this->getRequest();
-        $form    = $this->createForm($this->get('dezull_help.topic.type'), $entity);
+        $form    = $this->createForm($this->getForm(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -116,7 +116,7 @@ class HelpTopicController extends Controller
             throw $this->createNotFoundException('Unable to find HelpTopic entity.');
         }
 
-        $editForm = $this->createForm($this->get('dezull_help.topic.type'), $entity);
+        $editForm = $this->createForm($this->getForm(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -143,7 +143,7 @@ class HelpTopicController extends Controller
             throw $this->createNotFoundException('Unable to find HelpTopic entity.');
         }
 
-        $editForm   = $this->createForm($this->get('dezull_help.topic.type'), $entity);
+        $editForm   = $this->createForm($this->getForm(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -198,5 +198,18 @@ class HelpTopicController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    private function getForm()
+    {
+        // Optional dependency on TrsteelCkeditorBundle
+
+        if (\class_exists('Trsteel\CkeditorBundle\TrsteelCkeditorBundle')) {
+            $form = $this->get('dezull_help.topic.type');
+        } else {
+            $form = new \Dezull\Bundle\HelpBundle\Form\SimpleHelpTopicType();
+        }
+
+        return $form;
     }
 }
