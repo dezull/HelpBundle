@@ -90,7 +90,12 @@ class BrowserController extends Controller
 
     private function handleUploadedImage($uploaded)
     {
-        $uploadDir = $this->get('kernel')->getRootDir() . '/../web/upload';
+        $c = $this->container;
+
+        $uploadDir = $c->getParameter('dezull_help.image.dir');
+        if (!\file_exists($uploadDir)) {
+            \mkdir($uploadDir, 0755, true);
+        }
 
         // TODO: inject acceptable mimes
         $mime = $uploaded->getMimeType();
@@ -99,7 +104,7 @@ class BrowserController extends Controller
             throw new \Exception("Invalid MIME type: $mime");
         }
 
-        $hash = \md5($uploaded->getRealPath());
+        $hash = \md5_file($uploaded->getRealPath());
         $fileName = $hash . '.' . preg_replace("/^.+\//", '', $mime);
         try {
             $uploaded->move($uploadDir, $fileName);
@@ -107,6 +112,6 @@ class BrowserController extends Controller
             throw $e;
         }
 
-        return '/upload/' . $fileName;
+        return $c->getParameter('dezull_help.image.baseurl') . "/$fileName";
     }
 }
