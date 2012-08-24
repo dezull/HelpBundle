@@ -24,5 +24,11 @@ class DezullHelpExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('dezull_help.topic.type.width', $config['width']);
+        $container->setParameter('dezull_help.topic.type.height', $config['height']);
+        $container->setParameter('dezull_help.topic.type.language', $config['language']);
+        $container->setParameter('dezull_help.topic.type.filebrowser_image_upload_url', $config['filebrowser_image_upload_url']);
+
     }
 }

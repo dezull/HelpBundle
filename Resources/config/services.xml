@@ -12,15 +12,14 @@
             <parameter>image/jpeg</parameter>
             <parameter>image/gif</parameter>
         </parameter>
+
+        <parameter key="dezull_help.topic.type.class">Dezull\Bundle\HelpBundle\Form\HelpTopicType</parameter>
     </parameters>
 
-    <!--
     <services>
-        <service id="dezull_help.example" class="%dezull_help.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="dezull_help.topic.type" class="%dezull_help.topic.type.class%">
+            <tag name="form.type" alias="ckeditor" />
+            <argument type="service" id="service_container" />
         </service>
     </services>
-    -->
 </container>

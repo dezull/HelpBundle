@@ -20,6 +20,29 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('dezull_help');
 
+        $rootNode
+            ->children()
+                ->scalarNode('width')
+                    ->defaultValue('400')
+                ->end()
+            ->end()
+            ->children()
+                ->scalarNode('height')
+                    ->defaultValue('150')
+                ->end()
+            ->end()
+            ->children()
+                ->scalarNode('language')
+                    ->defaultValue('en_uk')
+                ->end()
+            ->end()
+            ->children()
+                ->scalarNode('filebrowser_image_upload_url')
+                    ->defaultValue('/help/upload-image')
+                ->end()
+            ->end()
+        ;
+
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
