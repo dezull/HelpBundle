@@ -22,30 +22,50 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('width')
+                ->scalarNode('topic_type')
+                    ->defaultValue('Dezull\Bundle\HelpBundle\Form\HelpTopicType')
+                ->end()
+            ->end()
+            ->children()
+                ->scalarNode('content_editor_width')
                     ->defaultValue('400')
                 ->end()
             ->end()
             ->children()
-                ->scalarNode('height')
+                ->scalarNode('content_editor_height')
                     ->defaultValue('150')
                 ->end()
             ->end()
             ->children()
-                ->scalarNode('language')
+                ->scalarNode('content_editor_language')
                     ->defaultValue('en_uk')
                 ->end()
             ->end()
             ->children()
-                ->scalarNode('filebrowser_image_upload_url')
+                ->scalarNode('image_upload_url')
                     ->defaultValue('/help/upload-image')
                 ->end()
             ->end()
+            ->children()
+                ->scalarNode('image_dir')
+                    ->defaultValue('%kernel.root_dir%/../web/upload/help')
+                ->end()
+            ->end()
+            ->children()
+                ->scalarNode('image_baseurl')
+                    ->defaultValue('/upload/help')
+                ->end()
+            ->end()
+            ->children()
+                ->variableNode('image_mimetypes')
+                    ->defaultValue(array(
+                        'image/png',
+                        'image/jpeg',
+                        'image/gif',
+                    ))
+                ->end()
+            ->end()
         ;
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
 
         return $treeBuilder;
     }

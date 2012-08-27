@@ -5,15 +5,19 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="dezull_help.image.dir">%kernel.root_dir%/../web/upload/help</parameter>
-        <parameter key="dezull_help.image.baseurl">/upload/help</parameter>
-        <parameter key="dezull_help.image.mimetypes" type="collection">
-            <parameter>image/png</parameter>
-            <parameter>image/jpeg</parameter>
-            <parameter>image/gif</parameter>
-        </parameter>
+        <!-- Topic form -->
+        <parameter key="dezull_help.topic.type.class" />
 
-        <parameter key="dezull_help.topic.type.class">Dezull\Bundle\HelpBundle\Form\HelpTopicType</parameter>
+        <!-- content editor parameters (if the default ckeditor form is used) -->
+        <parameter key="dezull_help.topic.content.width" />
+        <parameter key="dezull_help.topic.content.height" />
+        <parameter key="dezull_help.topic.content.language" />
+        <parameter key="dezull_help.topic.content.filebrowser_image_upload_url" />
+
+        <!-- Image upload parameters (if the default ckeditor form is used) -->
+        <parameter key="dezull_help.image.dir" />
+        <parameter key="dezull_help.image.baseurl" />
+        <parameter key="dezull_help.image.mimetypes" type="collection" />
     </parameters>
 
     <services>

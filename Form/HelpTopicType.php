@@ -49,11 +49,13 @@ class HelpTopicType extends AbstractType
      */
     public function getDefaultOptions(array $options = array())
     {
+        $c = $this->container;
+
         return array(
-            'width' => $this->container->getParameter('dezull_help.topic.type.width'),
-            'height' => $this->container->getParameter('dezull_help.topic.type.height'),
-            'language' => $this->container->getParameter('dezull_help.topic.type.language'),
-            'filebrowser_image_upload_url' => $this->container->getParameter('dezull_help.topic.type.filebrowser_image_upload_url'),
+            'width' => $c->getParameter('dezull_help.topic.content.width'),
+            'height' => $c->getParameter('dezull_help.topic.content.height'),
+            'language' => $c->getParameter('dezull_help.topic.content.language'),
+            'filebrowser_image_upload_url' => $c->getParameter('dezull_help.topic.content.filebrowser_image_upload_url'),
         );
     }
 
