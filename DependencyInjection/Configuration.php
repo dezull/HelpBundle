@@ -43,7 +43,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->children()
                 ->scalarNode('image_upload_url')
-                    ->defaultValue('/help/upload-image')
+                    ->defaultValue('/help/topic/upload-image')
                 ->end()
             ->end()
             ->children()
