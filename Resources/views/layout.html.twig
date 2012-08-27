@@ -10,13 +10,15 @@
     </head>
     <body>
         <div id="bodyWrapper">
+            <a id="topAnchor" href="#header">top</a>
             <div id="header">
                 {% block header %}
-                    <h1>Help Browser</h1>
+                    <h1>Documentation</h1>
                 {% endblock %}
             </div>
             <div id="contentWrapper">
                 {% block contentWrapper %}
+                    <div id="sidebarGradient"></div>
                     <div id="sidebar">
                         {% block sidebar %}
                             {% render "DezullHelpBundle:Browser:topicTree" %}
@@ -29,7 +31,7 @@
             </div>
             <div id="footer">
                 {% block footer %}
-                    <p>Copyright &copy;</p>
+                    <div>Copyright &copy;</div>
                 {% endblock %}
             </div>
         </div>
