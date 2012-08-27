@@ -55,7 +55,8 @@ class HelpTopicType extends AbstractType
             'width' => $c->getParameter('dezull_help.topic.content.width'),
             'height' => $c->getParameter('dezull_help.topic.content.height'),
             'language' => $c->getParameter('dezull_help.topic.content.language'),
-            'filebrowser_image_upload_url' => $c->getParameter('dezull_help.topic.content.filebrowser_image_upload_url'),
+            'filebrowser_image_upload_url' => $c->get('router')->generate(
+                $c->getParameter('dezull_help.topic.content.filebrowser_image_upload_url')),
         );
     }
 
