@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     <link href="{{ asset('bundles/dezullhelp/css/reset.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('bundles/dezullhelp/css/layout.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/dezullhelp/css/admin_layout.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
@@ -13,18 +13,9 @@
                 <h1>Documentation</h1>
             {% endblock %}
         </div>
-        <div id="contentWrapper">
-            {% block contentWrapper %}
-                <div id="sidebarGradient"></div>
-                <div id="sidebar">
-                    {% block sidebar %}
-                        {% render "DezullHelpBundle:Browser:topicTree" %}
-                    {% endblock %}
-                </div>
-                <div id="content">
-                    {% block content %}{% endblock %}
-                </div>
-            {% endblock %}
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
         </div>
         <div id="footer">
             {% block footer %}

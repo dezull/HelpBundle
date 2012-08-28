@@ -23,6 +23,10 @@ class HelpTopicType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('category', 'entity', array(
+                'class' => 'DezullHelpBundle:HelpCategory',
+                'property' => 'name',
+            ))
             ->add('content', 'ckeditor', array(
                 'transformers'           => array('strip_js', 'strip_css', 'strip_comments', 'strip_tags'),
                 'toolbar'                => array('document', 'insert', 'basicstyles', 'paragraph'),
@@ -36,10 +40,6 @@ class HelpTopicType extends AbstractType
                 'height'                 => $options['height'],
                 'language'               => $options['language'],
                 'filebrowser_image_upload_url'   => $options['filebrowser_image_upload_url'],
-            ))
-            ->add('category', 'entity', array(
-                'class' => 'DezullHelpBundle:HelpCategory',
-                'property' => 'name',
             ))
         ;
     }

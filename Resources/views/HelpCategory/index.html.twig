@@ -1,37 +1,33 @@
-<h1>HelpCategory list</h1>
+{% extends "DezullHelpBundle::admin_layout.html.twig" %}
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('dezull_help_category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.name }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('dezull_help_category_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('dezull_help_category_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% block content %}
+<h1>Categories</h1>
 
-<ul>
-    <li>
-        <a href="{{ path('dezull_help_category_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+<div id="actionBar">
+    <form action="{{ path('dezull_help_category_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <button type="submit">Create new category</button>
+    </form>        
+    <div class="clear"></div>
+</div>
+
+<div id="contentInner">
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                <td>{{ loop.index }}</td>
+                <td><a href="{{ path('dezull_help_category_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

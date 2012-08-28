@@ -1,0 +1,171 @@
+.clear {
+    clear: both;
+}
+
+#bodyWrapper {
+}
+
+#header {
+    background-color: #660000;
+    border-bottom: 1px solid #FF6666;
+    position: relative;
+    z-index: 9999;
+}
+
+#header h1 {
+    color: white;
+    margin: 0;
+    padding: 10px 5px;
+}
+
+#topAnchor {
+    background-color: #FFCCCC;
+    padding: 4px 10px;
+    position: fixed;
+    border-radius: 0 0 0 5px;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#footer {
+    border-top: 1px solid #FF6666;
+    color: white;
+    float: left;
+    width: 100%;
+    background-color: #660000;
+    clear: both;
+    padding: 6px 0;
+    margin: 0;
+    text-align: center;
+}
+
+#content {
+    padding: 5px;
+}
+
+#content h1 {
+    color: #222;
+}
+
+#actionBar {
+    background-color: #FFCCCC;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#actionBar .middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#actionBar input {
+    font-size: 90%;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+#actionBar form,
+#actionBar form div {
+    float: left;
+}
+
+#actionBar .separator {
+    padding-left: 2px;
+    border-right: 1px solid #999;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+#contentInner {
+    padding: 5px 10px;
+}
+
+table.records_list {
+    margin: 5px 0;
+    border: 0;
+}
+
+table.records_list thead tr {
+    background-color: #ccc;
+}
+
+table.records_list th,
+table.records_list td {
+    border: 1px solid #ddd;
+}
+
+table.records_list tr.even {
+    background-color: #eee;
+}
+
+
+table.record_properties td,
+table.record_properties th {
+    border: 1px solid #ddd;
+}
+
+table.record_properties th {
+    background-color: #ccc;
+}
+
+.separator {
+    border-right: 1px solid #999;
+    margin-right: 4px;
+}
+
+.topicContent {
+    margin: 10px 0;
+}
+
+#dezull_helpbundle_helptopictype label {
+    padding-top: 2px;
+    font-weight: bold;
+    color: #660000;
+    clear: left;
+    float: left;
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+#dezull_helpbundle_helptopictype input,
+#dezull_helpbundle_helptopictype select {
+    font-size: 90%;
+}
+
+#dezull_helpbundle_helptopictype input,
+#dezull_helpbundle_helptopictype select,
+#topicForm span.cke_skin_kama {
+    margin-bottom: 10px;
+}
+
+#topicForm {
+    border-radius: 5px;
+    padding: 10px 5px;
+    border: 1px solid #ddd;
+}
+
+#topicForm p {
+    margin: 0;
+}
+
+#topicForm .cke_editor {
+    border: 1px solid #ddd;
+}
+
+#topicForm span.cke_skin_kama {
+    float: left;
+    margin: 0;
+    /* display: inline; */
+    border: none;
+    padding: 0;
+}
+
+#topicForm span.cke_skin_kama .cke_wrapper {
+    padding: 0;
+}
+
+#topicForm button[type=submit] {
+    margin-top: 10px;
+}

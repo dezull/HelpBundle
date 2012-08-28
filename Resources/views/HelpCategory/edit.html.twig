@@ -1,22 +1,31 @@
-<h1>HelpCategory edit</h1>
+{% extends "DezullHelpBundle::admin_layout.html.twig" %}
 
-<form action="{{ path('dezull_help_category_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit">Edit</button>
-    </p>
-</form>
+{% block content %}
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('dezull_help_category') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('dezull_help_category_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+<h1>Topics for <em>{{ entity.name }}</em></h1>
+
+<div id="actionBar">
+    <form action="{{ path('dezull_help_category_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {{ form_widget(edit_form) }}
+        <button type="submit">Rename category</button>
+    </form>        
+    <form action="{{ path('dezull_help_category_delete', { 'id': entity.id }) }}" method="post">
+        {{ form_widget(delete_form) }}
+        <button type="submit">Delete this category</button>
+    </form>
+    <div class="clear"></div>
+</div>
+
+<div id="contentInner">
+    <div>
+        <a href="{{ path('dezull_help_topic_new', { categoryId: entity.id }) }}">New Topic</a>
+        <span class="separator"></span>
+        <a href="{{ path('dezull_help_category') }}">Back to Categories</a>
+    </div>
+
+    <div id="topicList">
+        {% include "DezullHelpBundle:HelpCategory:topicList.html.twig" with { topics: topics } %}
+    </div>
+</div>
+
+{% endblock %}

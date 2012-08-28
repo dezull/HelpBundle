@@ -19,21 +19,6 @@ use Dezull\Bundle\HelpBundle\Form\HelpTopicType;
 class HelpTopicController extends Controller
 {
     /**
-     * Lists all HelpTopic entities.
-     *
-     * @Route("/", name="dezull_help_topic")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('DezullHelpBundle:HelpTopic')->findAll();
-
-        return array('entities' => $entities);
-    }
-
-    /**
      * Finds and displays a HelpTopic entity.
      *
      * @Route("/{id}/show", name="dezull_help_topic_show")
@@ -59,13 +44,20 @@ class HelpTopicController extends Controller
     /**
      * Displays a form to create a new HelpTopic entity.
      *
-     * @Route("/new", name="dezull_help_topic_new")
+     * @Route("/{categoryId}/new", name="dezull_help_topic_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($categoryId)
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        $category = $em->getRepository('DezullHelpBundle:HelpCategory')->find($categoryId);
+        if (!$category) {
+            throw $this->createNotFoundException();
+        }
+
         $entity = new HelpTopic();
-        $form   = $this->createForm($this->getForm(), $entity);
+        $entity->setCategory($category);
+        $form = $this->createForm($this->getForm(), $entity);
 
         return array(
             'entity' => $entity,

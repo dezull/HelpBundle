@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Dezull\Bundle\HelpBundle\Entity\HelpCategory;
 use Dezull\Bundle\HelpBundle\Form\HelpCategoryType;
 
@@ -22,52 +23,16 @@ class HelpCategoryController extends Controller
      * @Route("/", name="dezull_help_category")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
+        $form = $this->createForm(new HelpCategoryType(), new HelpCategory());
         $entities = $em->getRepository('DezullHelpBundle:HelpCategory')->findAll();
 
-        return array('entities' => $entities);
-    }
-
-    /**
-     * Finds and displays a HelpCategory entity.
-     *
-     * @Route("/{id}/show", name="dezull_help_category_show")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find HelpCategory entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
         return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        );
-    }
-
-    /**
-     * Displays a form to create a new HelpCategory entity.
-     *
-     * @Route("/new", name="dezull_help_category_new")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $entity = new HelpCategory();
-        $form   = $this->createForm(new HelpCategoryType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView()
+            'entities' => $entities,
+            'form' => $form->createView(),
         );
     }
 
@@ -90,14 +55,12 @@ class HelpCategoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('dezull_help_category_show', array('id' => $entity->getId())));
-            
+            $this->get('session')->setFlash('notice', $entity->getName() . ' created');
+        } else {
+            $this->get('session')->setFlash('error', 'Error creating ' . $entity->getName());
         }
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        );
+        return $this->redirect($this->generateUrl('dezull_help_category'));
     }
 
     /**
@@ -119,10 +82,13 @@ class HelpCategoryController extends Controller
         $editForm = $this->createForm(new HelpCategoryType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
+        $topics = $em->getRepository('DezullHelpBundle:HelpTopic')->findByCategory($id);
+
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'topics' => $topics,
         );
     }
 
