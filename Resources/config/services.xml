@@ -25,5 +25,9 @@
             <tag name="form.type" alias="ckeditor" />
             <argument type="service" id="service_container" />
         </service>
+        <service id="dezull_help.transformer.strip_tags" class="Dezull\Bundle\HelpBundle\Transformer\StripTags">
+            <tag name="trsteel_ckeditor.transformer" alias="strip_tags" />
+            <argument>h1,h2,h3,h4,h5,h6,p,b,i,strong,em,a,img,ul,ol,li,sup,sub,strike</argument>
+        </service>
     </services>
 </container>

@@ -24,7 +24,7 @@ class HelpTopicType extends AbstractType
         $builder
             ->add('title')
             ->add('content', 'ckeditor', array(
-                'transformers'           => array('strip_js', 'strip_css', 'strip_comments'),
+                'transformers'           => array('strip_js', 'strip_css', 'strip_comments', 'strip_tags'),
                 'toolbar'                => array('document', 'insert', 'basicstyles', 'paragraph'),
                 'toolbar_groups'         => array(
                     'document' => array('Source'),
