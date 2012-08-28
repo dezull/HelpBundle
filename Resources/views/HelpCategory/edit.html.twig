@@ -11,7 +11,7 @@
     </form>        
     <form action="{{ path('dezull_help_category_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <button type="submit">Delete this category</button>
+        <button onclick="return confirm('Delete this category?')" type="submit">Delete this category</button>
     </form>
     <div class="clear"></div>
 </div>

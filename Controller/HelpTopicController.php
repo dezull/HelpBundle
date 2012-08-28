@@ -179,11 +179,17 @@ class HelpTopicController extends Controller
                 throw $this->createNotFoundException('Unable to find HelpTopic entity.');
             }
 
+            $categoryId = $entity->getCategory()->getId();
+
             $em->remove($entity);
             $em->flush();
+
+            return $this->redirect($this->generateUrl('dezull_help_category_edit', array(
+                'id' => $categoryId,
+            )));
         }
 
-        return $this->redirect($this->generateUrl('dezull_help_topic'));
+        return $this->redirect($this->generateUrl('dezull_help_category'));
     }
 
     /**

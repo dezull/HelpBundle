@@ -7,7 +7,7 @@
 <div id="actionBar">
     <form action="{{ path('dezull_help_topic_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <button type="submit">Delete this topic</button>
+        <button onclick="return confirm('Delete this category?')" type="submit">Delete</button>
     </form>
     <div class="clear"></div>
 </div>
