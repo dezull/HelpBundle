@@ -2,23 +2,23 @@
 
 {% block content %}
 
-<h1>Topics for <em>{{ entity.name }}</em></h1>
+<h1>Topics for <em>{{ category.name }}</em></h1>
 
 <div id="actionBar">
-    <form action="{{ path('dezull_help_category_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form action="{{ path('dezull_help_category_update', { 'id': category.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         {{ form_widget(edit_form) }}
         <button type="submit">Rename category</button>
     </form>        
-    <form action="{{ path('dezull_help_category_delete', { 'id': entity.id }) }}" method="post">
+    <form action="{{ path('dezull_help_category_delete', { 'id': category.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <button onclick="return confirm('Delete this category?')" type="submit">Delete this category</button>
+        <button onclick="return confirm('Delete this category?. All topics will be deleted.')" type="submit">Delete this category</button>
     </form>
     <div class="clear"></div>
 </div>
 
 <div id="contentInner">
     <div>
-        <a href="{{ path('dezull_help_topic_new', { categoryId: entity.id }) }}">New Topic</a>
+        <a href="{{ path('dezull_help_topic_new', { categoryId: category.id }) }}">New Topic</a>
         <span class="separator"></span>
         <a href="{{ path('dezull_help_category') }}">Back to Categories</a>
     </div>

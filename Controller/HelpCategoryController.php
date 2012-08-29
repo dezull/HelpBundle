@@ -45,19 +45,19 @@ class HelpCategoryController extends Controller
      */
     public function createAction()
     {
-        $entity  = new HelpCategory();
+        $category  = new HelpCategory();
         $request = $this->getRequest();
-        $form    = $this->createForm(new HelpCategoryType(), $entity);
+        $form    = $this->createForm(new HelpCategoryType(), $category);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
+            $em->persist($category);
             $em->flush();
 
-            $this->get('session')->setFlash('notice', $entity->getName() . ' created');
+            $this->get('session')->setFlash('notice', $category->getName() . ' created');
         } else {
-            $this->get('session')->setFlash('error', 'Error creating ' . $entity->getName());
+            $this->get('session')->setFlash('error', 'Error creating ' . $category->getName());
         }
 
         return $this->redirect($this->generateUrl('dezull_help_category'));
@@ -73,19 +73,19 @@ class HelpCategoryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
+        $category = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
 
-        if (!$entity) {
+        if (!$category) {
             throw $this->createNotFoundException('Unable to find HelpCategory entity.');
         }
 
-        $editForm = $this->createForm(new HelpCategoryType(), $entity);
+        $editForm = $this->createForm(new HelpCategoryType(), $category);
         $deleteForm = $this->createDeleteForm($id);
 
         $topics = $em->getRepository('DezullHelpBundle:HelpTopic')->findByCategory($id);
 
         return array(
-            'entity'      => $entity,
+            'category'      => $category,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'topics' => $topics,
@@ -103,13 +103,13 @@ class HelpCategoryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
+        $category = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
 
-        if (!$entity) {
+        if (!$category) {
             throw $this->createNotFoundException('Unable to find HelpCategory entity.');
         }
 
-        $editForm   = $this->createForm(new HelpCategoryType(), $entity);
+        $editForm   = $this->createForm(new HelpCategoryType(), $category);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -117,14 +117,14 @@ class HelpCategoryController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+            $em->persist($category);
             $em->flush();
 
             return $this->redirect($this->generateUrl('dezull_help_category_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
+            'category'      => $category,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -145,13 +145,13 @@ class HelpCategoryController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
+            $category = $em->getRepository('DezullHelpBundle:HelpCategory')->find($id);
 
-            if (!$entity) {
+            if (!$category) {
                 throw $this->createNotFoundException('Unable to find HelpCategory entity.');
             }
-
-            $em->remove($entity);
+            
+            $em->remove($category);
             $em->flush();
         }
 
