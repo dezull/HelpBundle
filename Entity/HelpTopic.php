@@ -3,8 +3,6 @@
 namespace Dezull\Bundle\HelpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Translatable\Translatable;
 
 /**
  * Dezull\Bundle\HelpBundle\Entity\HelpTopic
@@ -26,7 +24,6 @@ class HelpTopic
     /**
      * @var string $title
      *
-     * @Gedmo\Translatable
      * @ORM\Column(name="title", type="string", length=120)
      */
     private $title;
@@ -34,7 +31,6 @@ class HelpTopic
     /**
      * @var text $content
      *
-     * @Gedmo\Translatable
      * @ORM\Column(name="content", type="text")
      */
     private $content;
@@ -50,7 +46,6 @@ class HelpTopic
     private $category;
 
     /**
-     * @Gedmo\Locale
      */
     private $locale;
 
