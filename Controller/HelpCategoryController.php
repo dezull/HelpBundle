@@ -150,6 +150,13 @@ class HelpCategoryController extends Controller
             if (!$category) {
                 throw $this->createNotFoundException('Unable to find HelpCategory entity.');
             }
+
+            // Delete contained topics
+            $topics = $em->getRepository('DezullHelpBundle:HelpTopic')
+                ->findByCategory($id);
+            foreach ($topics as $topic) {
+                $em->remove($topic);
+            }
             
             $em->remove($category);
             $em->flush();
