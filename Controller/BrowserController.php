@@ -15,7 +15,7 @@ use Dezull\Bundle\HelpBundle\Form\HelpTopicType;
 class BrowserController extends Controller
 {
     /**
-     * Lists all HelpTopic entities.
+     * Show topic
      *
      * @param string $title Topic title
      *
@@ -30,6 +30,10 @@ class BrowserController extends Controller
         $topic = null;
         if ($title) {
             $topic = $em->getRepository('DezullHelpBundle:HelpTopic')->findOneByTitle($title);
+
+            if (!$topic) {
+                throw $this->createNotFoundException();
+            }
         }
 
         return compact('topic');
