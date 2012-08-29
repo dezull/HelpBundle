@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<h1>{{ entity.title }}</h1>
+<h1>{{ topic.title }}</h1>
 
 <div id="actionBar">
-    <form action="{{ path('dezull_help_topic_delete', { 'id': entity.id }) }}" method="post">
+    <form action="{{ path('dezull_help_topic_delete', { 'id': topic.id }) }}" method="post">
         {{ form_widget(delete_form) }}
         <button onclick="return confirm('Delete this category?')" type="submit">Delete</button>
     </form>
@@ -14,13 +14,13 @@
 
 <div id="contentInner">
     <div>
-        <a href="{{ path('dezull_help_topic_edit', { 'id': entity.id }) }}">Edit</a>
+        <a href="{{ path('dezull_help_topic_edit', { 'id': topic.id }) }}">Edit</a>
         <span class="separator"></span>
-        <a href="{{ path('dezull_help_category_edit', { id: entity.category.id }) }}">Back to the list</a>
+        <a href="{{ path('dezull_help_category_edit', { id: topic.category.id }) }}">Back to the list</a>
     </div>
 
     <div class="topicContent">
-        {{ entity.content|raw }}
+        {{ topic.content|raw }}
     </div>
 </div>
 

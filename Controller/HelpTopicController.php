@@ -28,16 +28,16 @@ class HelpTopicController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('DezullHelpBundle:HelpTopic')->find($id);
+        $topic = $em->getRepository('DezullHelpBundle:HelpTopic')->find($id);
 
-        if (!$entity) {
+        if (!$topic) {
             throw $this->createNotFoundException('Unable to find HelpTopic entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'topic'      => $topic,
             'delete_form' => $deleteForm->createView(),        );
     }
 
@@ -55,12 +55,12 @@ class HelpTopicController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $entity = new HelpTopic();
-        $entity->setCategory($category);
-        $form = $this->createForm($this->getForm(), $entity);
+        $topic = new HelpTopic();
+        $topic->setCategory($category);
+        $form = $this->createForm($this->getForm(), $topic);
 
         return array(
-            'entity' => $entity,
+            'topic' => $topic,
             'form'   => $form->createView()
         );
     }
@@ -74,22 +74,22 @@ class HelpTopicController extends Controller
      */
     public function createAction()
     {
-        $entity  = new HelpTopic();
+        $topic  = new HelpTopic();
         $request = $this->getRequest();
-        $form    = $this->createForm($this->getForm(), $entity);
+        $form    = $this->createForm($this->getForm(), $topic);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
+            $em->persist($topic);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('dezull_help_topic_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('dezull_help_topic_show', array('id' => $topic->getId())));
             
         }
 
         return array(
-            'entity' => $entity,
+            'topic' => $topic,
             'form'   => $form->createView()
         );
     }
@@ -104,17 +104,17 @@ class HelpTopicController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('DezullHelpBundle:HelpTopic')->find($id);
+        $topic = $em->getRepository('DezullHelpBundle:HelpTopic')->find($id);
 
-        if (!$entity) {
+        if (!$topic) {
             throw $this->createNotFoundException('Unable to find HelpTopic entity.');
         }
 
-        $editForm = $this->createForm($this->getForm(), $entity);
+        $editForm = $this->createForm($this->getForm(), $topic);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'topic'      => $topic,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -131,13 +131,13 @@ class HelpTopicController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('DezullHelpBundle:HelpTopic')->find($id);
+        $topic = $em->getRepository('DezullHelpBundle:HelpTopic')->find($id);
 
-        if (!$entity) {
+        if (!$topic) {
             throw $this->createNotFoundException('Unable to find HelpTopic entity.');
         }
 
-        $editForm   = $this->createForm($this->getForm(), $entity);
+        $editForm   = $this->createForm($this->getForm(), $topic);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -145,14 +145,14 @@ class HelpTopicController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+            $em->persist($topic);
             $em->flush();
 
             return $this->redirect($this->generateUrl('dezull_help_topic_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
+            'topic'      => $topic,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );

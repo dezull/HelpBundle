@@ -5,7 +5,7 @@
 <h1>Edit Topic</h1>
 
 <div id="actionBar">
-    <form action="{{ path('dezull_help_topic_delete', { 'id': entity.id,  }) }}" method="post">
+    <form action="{{ path('dezull_help_topic_delete', { 'id': topic.id,  }) }}" method="post">
         {{ form_widget(delete_form) }}
         <button onclick="return confirm('Delete this category?')" type="submit">Delete</button>
     </form>
@@ -14,10 +14,10 @@
 
 <div id="contentInner">
     <div>
-        <a class="middle" href="{{ path('dezull_help_category_edit', { id: entity.category.id }) }}">Back to the list</a>
+        <a class="middle" href="{{ path('dezull_help_category_edit', { id: topic.category.id }) }}">Back to the list</a>
     </div>
 
-    <form id="topicForm" action="{{ path('dezull_help_topic_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form id="topicForm" action="{{ path('dezull_help_topic_update', { 'id': topic.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         {{ form_widget(edit_form) }}
         <div class="clear"></div>
         <button type="submit">Update</button>
