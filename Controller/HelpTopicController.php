@@ -37,8 +37,9 @@ class HelpTopicController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'topic'      => $topic,
-            'delete_form' => $deleteForm->createView(),        );
+            'topic' => $topic,
+            'delete_form' => $deleteForm->createView(),
+        );
     }
 
     /**
@@ -61,7 +62,7 @@ class HelpTopicController extends Controller
 
         return array(
             'topic' => $topic,
-            'form'   => $form->createView()
+            'form' => $form->createView()
         );
     }
 
@@ -74,9 +75,9 @@ class HelpTopicController extends Controller
      */
     public function createAction()
     {
-        $topic  = new HelpTopic();
+        $topic = new HelpTopic();
         $request = $this->getRequest();
-        $form    = $this->createForm($this->getForm(), $topic);
+        $form = $this->createForm($this->getForm(), $topic);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -85,12 +86,11 @@ class HelpTopicController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('dezull_help_topic_show', array('id' => $topic->getId())));
-            
         }
 
         return array(
             'topic' => $topic,
-            'form'   => $form->createView()
+            'form' => $form->createView()
         );
     }
 
@@ -114,8 +114,8 @@ class HelpTopicController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'topic'      => $topic,
-            'edit_form'   => $editForm->createView(),
+            'topic' => $topic,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -137,7 +137,7 @@ class HelpTopicController extends Controller
             throw $this->createNotFoundException('Unable to find HelpTopic entity.');
         }
 
-        $editForm   = $this->createForm($this->getForm(), $topic);
+        $editForm = $this->createForm($this->getForm(), $topic);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -152,8 +152,8 @@ class HelpTopicController extends Controller
         }
 
         return array(
-            'topic'      => $topic,
-            'edit_form'   => $editForm->createView(),
+            'topic' => $topic,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

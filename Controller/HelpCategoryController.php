@@ -47,7 +47,7 @@ class HelpCategoryController extends Controller
     {
         $category  = new HelpCategory();
         $request = $this->getRequest();
-        $form    = $this->createForm(new HelpCategoryType(), $category);
+        $form = $this->createForm(new HelpCategoryType(), $category);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -85,8 +85,8 @@ class HelpCategoryController extends Controller
         $topics = $em->getRepository('DezullHelpBundle:HelpTopic')->findByCategory($id);
 
         return array(
-            'category'      => $category,
-            'edit_form'   => $editForm->createView(),
+            'category' => $category,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'topics' => $topics,
         );
@@ -124,8 +124,8 @@ class HelpCategoryController extends Controller
         }
 
         return array(
-            'category'      => $category,
-            'edit_form'   => $editForm->createView(),
+            'category' => $category,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
