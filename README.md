@@ -48,7 +48,7 @@ This bundle provides interface for viewing web application's documentation or he
 
     _help_topic:
         type:     annotation
-        pattern: /help/!{topic}
+        pattern: /help/!{title}
         defaults: { _controller: DezullHelpBundle:Browser:index }
 
     _help_topic_home:
