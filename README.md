@@ -21,7 +21,7 @@ This bundle provides interface for viewing web application's documentation or he
 #### 1. Add the bundle to deps
 
     [DezullHelpBundle]
-        git=git@bitbucket.org:dezull/helpbundle.git
+        git=git://github.com/dezull/HelpBundle.git
         target=/bundles/Dezull/Bundle/HelpBundle
 
 #### 2. Install vendor
