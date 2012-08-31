@@ -1,13 +1,21 @@
 {% extends "DezullHelpBundle::layout.html.twig" %}
 
-{% block content %}
-    {% if topic is not null %}
-        <h2>{{ topic.title }}</h2>
-        <div class="topicContent">
-            {{ topic.content|raw }}
-        </div>
-    {% else %}
-        <h2>Help Browser</h2>
-        <p>Choose a topic from the left sidebar</p>
-    {% endif %}
+{% block contentWrapper %}
+    <div id="sidebar">
+        {% block sidebar %}
+            {% set selectTopicId = topic is not null ? topic.id : null %}
+            {% render "DezullHelpBundle:Browser:topicTree" with { selectTopicId: selectTopicId } %}
+        {% endblock %}
+    </div>
+    <div id="content">
+        {% if topic is not null %}
+            <h1>{{ topic.title }}</h1>
+            <div class="topicContent">
+                {{ topic.content|raw }}
+            </div>
+        {% else %}
+            <h1>Help Browser</h1>
+            <p>Choose a topic from the left sidebar</p>
+        {% endif %}
+    </div>
 {% endblock %}

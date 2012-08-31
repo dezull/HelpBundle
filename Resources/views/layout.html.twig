@@ -14,17 +14,7 @@
             {% endblock %}
         </div>
         <div id="contentWrapper">
-            {% block contentWrapper %}
-                <div id="sidebarGradient"></div>
-                <div id="sidebar">
-                    {% block sidebar %}
-                        {% render "DezullHelpBundle:Browser:topicTree" %}
-                    {% endblock %}
-                </div>
-                <div id="content">
-                    {% block content %}{% endblock %}
-                </div>
-            {% endblock %}
+            {% block contentWrapper %}{% endblock %}
         </div>
         <div id="footer">
             {% block footer %}

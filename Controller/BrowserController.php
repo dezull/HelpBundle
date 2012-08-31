@@ -43,9 +43,10 @@ class BrowserController extends Controller
      * List categories & topics
      *
      * @Route("/topicTree", name="dezull_help_browser_topictree")
+     * @Route("/topicTree/{selectTopicId}", name="dezull_help_browser_topictree_selected")
      * @Template()
      */
-    public function topicTreeAction()
+    public function topicTreeAction($selectTopicId)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -57,6 +58,9 @@ class BrowserController extends Controller
             $tree[$category->getName()] = $topicRepo->findByCategory($category->getId());
         }
 
-        return compact('tree');
+        return array(
+            'tree' => $tree,
+            'selectTopicId' => $selectTopicId,
+        );
     }
 }
