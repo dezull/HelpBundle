@@ -41,26 +41,30 @@ class HelpCategoryController extends Controller
      *
      * @Route("/create", name="dezull_help_category_create")
      * @Method("post")
-     * @Template("DezullHelpBundle:HelpCategory:new.html.twig")
+     * @Template("DezullHelpBundle:HelpCategory:index.html.twig")
      */
     public function createAction()
     {
         $category  = new HelpCategory();
         $request = $this->getRequest();
+        $em = $this->getDoctrine()->getEntityManager();
+
         $form = $this->createForm(new HelpCategoryType(), $category);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
             $em->persist($category);
             $em->flush();
 
-            $this->get('session')->setFlash('notice', $category->getName() . ' created');
-        } else {
-            $this->get('session')->setFlash('error', 'Error creating ' . $category->getName());
+            return $this->redirect($this->generateUrl('dezull_help_category'));
         }
 
-        return $this->redirect($this->generateUrl('dezull_help_category'));
+        $entities = $em->getRepository('DezullHelpBundle:HelpCategory')->findAll();
+
+        return array(
+            'entities' => $entities,
+            'form' => $form->createView(),
+        );
     }
 
     /**
