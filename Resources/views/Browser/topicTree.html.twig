@@ -1,7 +1,7 @@
 <ul class="category">
     {% for category, topics in tree %}
         <li>
-            <h4>{{ category }}</h4>
+            <span class="categoryTitle">{{ category }}</span>
             <ul class="topic">
                 {% for topic in topics %}
                     {% if selectTopicId == topic.id %}
