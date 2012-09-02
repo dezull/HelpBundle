@@ -32,7 +32,7 @@ class HelpTopicType extends AbstractType
                 'toolbar'                => array('document', 'insert', 'basicstyles', 'styles', 'paragraph', 'links'),
                 'toolbar_groups'         => array(
                     'document' => array('Source'),
-                    'insert' => array('Image'),
+                    'insert' => array('Image', 'Table', 'HorizontalRule'),
                     'styles' => array('Format'),
                     'links' => array('Link', 'Unlink'),
                 ),
