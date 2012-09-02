@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Dezull\Bundle\HelpBundle\Entity\HelpTopic
  *
- * @ORM\Table(name="help_topic")
+ * @ORM\Table(name="help_topic", uniqueConstraints={@ORM\UniqueConstraint(name="title_idx", columns={"title"})})
  * @ORM\Entity()
  */
 class HelpTopic

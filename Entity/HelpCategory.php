@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Dezull\Bundle\HelpBundle\Entity\HelpCategory
  *
- * @ORM\Table(name="help_category")
+ * @ORM\Table(name="help_category", uniqueConstraints={@ORM\UniqueConstraint(name="name_idx", columns={"name"})})
  * @ORM\Entity()
  */
 class HelpCategory

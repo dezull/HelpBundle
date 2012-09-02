@@ -1,0 +1,19 @@
+Dezull\Bundle\HelpBundle\Entity\HelpTopic:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: title
+    properties:
+        title:
+            - NotBlank: ~
+            - MaxLength: 120
+            - Regex: "/^[a-zA-Z0-9-_,.()\'\" ]+$/"
+        content:
+            - NotBlank: ~
+
+Dezull\Bundle\HelpBundle\Entity\HelpCategory:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - NotBlank: ~
+            - MaxLength: 120
+            - Regex: "/^[a-zA-Z0-9-_,.()\'\" ]+$/"
