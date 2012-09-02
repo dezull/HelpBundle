@@ -6,13 +6,18 @@
 
 <div id="actionBar">
     <form action="{{ path('dezull_help_category_update', { 'id': category.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-        {{ form_widget(edit_form) }}
+        {{ form_label(edit_form.name) }}
+        {{ form_widget(edit_form.name) }}
+        {{ form_rest(edit_form) }}
         <button type="submit">Rename category</button>
     </form>        
     <form action="{{ path('dezull_help_category_delete', { 'id': category.id }) }}" method="post">
         {{ form_widget(delete_form) }}
         <button onclick="return confirm('Delete this category?. All topics will be deleted.')" type="submit">Delete this category</button>
     </form>
+    <div class="clear formErrors">
+        {{ form_errors(edit_form.name) }}
+    </div>
     <div class="clear"></div>
 </div>
 

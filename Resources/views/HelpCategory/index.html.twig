@@ -5,9 +5,14 @@
 
 <div id="actionBar">
     <form action="{{ path('dezull_help_category_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_rest(form) }}
         <button type="submit">Create new category</button>
     </form>        
+    <div class="clear formErrors">
+        {{ form_errors(form.name) }}
+    </div>
     <div class="clear"></div>
 </div>
 

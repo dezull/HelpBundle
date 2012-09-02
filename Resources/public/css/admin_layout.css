@@ -78,6 +78,17 @@
     vertical-align: middle;
 }
 
+
+#actionBar .formErrors {
+    color: #900;
+    float: left;
+}
+
+#actionBar .formErrors ul {
+    margin: 4px 0 4px 1em; 
+    list-style-type: square;
+}
+
 #contentInner {
     padding: 5px 10px;
 }
@@ -119,7 +130,7 @@ table.record_properties th {
     margin: 10px 0;
 }
 
-#dezull_helpbundle_helptopictype label {
+#topicForm label {
     padding-top: 2px;
     font-weight: bold;
     color: #660000;
@@ -129,13 +140,13 @@ table.record_properties th {
     margin-bottom: 10px;
 }
 
-#dezull_helpbundle_helptopictype input,
-#dezull_helpbundle_helptopictype select {
+#topicForm input,
+#topicForm select {
     font-size: 90%;
 }
 
-#dezull_helpbundle_helptopictype input,
-#dezull_helpbundle_helptopictype select,
+#topicForm input,
+#topicForm select,
 #topicForm span.cke_skin_kama {
     margin-bottom: 10px;
 }
@@ -149,6 +160,25 @@ table.record_properties th {
 
 #topicForm p {
     margin: 0;
+}
+
+#topicForm .widgetRow {
+}
+
+#topicForm .formErrors {
+    color: #900;
+    margin-left: 80px;
+}
+
+#topicForm .formErrors ul {
+    list-style-type: square;
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+
+#topicForm .formErrors li {
+    margin: 0;
+    padding: 0;
 }
 
 #topicForm .cke_editor {
