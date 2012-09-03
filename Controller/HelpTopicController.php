@@ -76,12 +76,17 @@ class HelpTopicController extends Controller
     public function createAction()
     {
         $topic = new HelpTopic();
+
         $request = $this->getRequest();
         $form = $this->createForm($this->getForm(), $topic);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+
+            $repo = $em->getRepository('DezullHelpBundle:HelpTopic');
+            $topic->setSequence($repo->getMaxSequenceByCategory($topic->getCategory()) + 1);
+
             $em->persist($topic);
             $em->flush();
 
@@ -221,6 +226,46 @@ class HelpTopicController extends Controller
 
         return new Response("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$path', '$message');</script>");
     }
+
+
+    /**
+     * Update topic sequences
+     *
+     * @Route("/update-sequences/{categoryId}", name="dezull_help_topic_update_sequences")
+     * @Template()
+     */
+    public function updateSequencesAction(Request $request, $categoryId)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        if (!$em->getRepository('DezullHelpBundle:HelpCategory')->find($categoryId)) {
+            throw $this->createNotFoundException();
+        }
+
+        $sequences = $request->request->get('sequence');
+        if (!is_array($sequences)) {
+            return $this->redirect($this->generateUrl('dezull_help_category_edit', array(
+                'id' => $categoryId,
+            )));
+        }
+
+        $repo = $em->getRepository('DezullHelpBundle:HelpTopic');
+
+        foreach ($sequences as $topicId => $sequence) {
+            $topic = $repo->find($topicId);
+            if (!$topic) continue;
+
+            $topic->setSequence((int) $sequence);
+            $em->persist($topic);
+        }
+
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dezull_help_category_edit', array(
+            'id' => $categoryId,
+        )));
+    }
+
 
     private function handleUploadedImage($uploaded)
     {

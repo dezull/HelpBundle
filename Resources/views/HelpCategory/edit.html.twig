@@ -30,7 +30,7 @@
 
     <div id="topicList">
         {% if topics is defined %}
-            {% include "DezullHelpBundle:HelpCategory:topicList.html.twig" with { topics: topics } %}
+            {% include "DezullHelpBundle:HelpTopic:_list.html.twig" with { topics: topics, categoryId: category.id } %}
         {% endif %}
     </div>
 </div>

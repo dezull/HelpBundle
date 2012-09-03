@@ -55,7 +55,7 @@ class BrowserController extends Controller
         $tree = array();
 
         foreach ($categories as $category) {
-            $tree[$category->getName()] = $topicRepo->findByCategory($category->getId());
+            $tree[$category->getName()] = $topicRepo->findByCategoryOrderBySequence($category->getId());
         }
 
         return array(
