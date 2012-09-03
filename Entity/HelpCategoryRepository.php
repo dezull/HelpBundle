@@ -15,4 +15,13 @@ class HelpCategoryRepository extends EntityRepository
             ->createQuery("SELECT MAX(c.sequence) FROM DezullHelpBundle:HelpCategory c")
             ->getSingleScalarResult();
     }
+
+    public function findAllOrderBySequence()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT c FROM DezullHelpBundle:HelpCategory c
+                 ORDER BY c.sequence ASC")
+            ->getResult();
+    }
 }

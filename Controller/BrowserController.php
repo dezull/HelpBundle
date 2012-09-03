@@ -50,9 +50,9 @@ class BrowserController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $categories = $em->getRepository('DezullHelpBundle:HelpCategory')->findAll();
-        $tree = array();
+        $categories = $em->getRepository('DezullHelpBundle:HelpCategory')->findAllOrderBySequence();
         $topicRepo = $em->getRepository('DezullHelpBundle:HelpTopic');
+        $tree = array();
 
         foreach ($categories as $category) {
             $tree[$category->getName()] = $topicRepo->findByCategory($category->getId());
