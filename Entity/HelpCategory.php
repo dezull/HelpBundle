@@ -81,7 +81,7 @@ class HelpCategory
     }
 
     /**
-     * Get name
+     * Get sequence
      *
      * @return int 
      */
