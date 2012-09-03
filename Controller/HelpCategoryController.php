@@ -43,11 +43,13 @@ class HelpCategoryController extends Controller
      * @Method("post")
      * @Template("DezullHelpBundle:HelpCategory:index.html.twig")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
-        $category  = new HelpCategory();
-        $request = $this->getRequest();
         $em = $this->getDoctrine()->getEntityManager();
+
+        $category  = new HelpCategory();
+        $repo = $em->getRepository('DezullHelpBundle:HelpCategory');
+        $category->setSequence($repo->getMaxSequence() + 1);
 
         $form = $this->createForm(new HelpCategoryType(), $category);
         $form->bindRequest($request);
@@ -59,7 +61,7 @@ class HelpCategoryController extends Controller
             return $this->redirect($this->generateUrl('dezull_help_category'));
         }
 
-        $entities = $em->getRepository('DezullHelpBundle:HelpCategory')->findAll();
+        $entities = $repo->findAll();
 
         return array(
             'entities' => $entities,
@@ -165,6 +167,35 @@ class HelpCategoryController extends Controller
             $em->remove($category);
             $em->flush();
         }
+
+        return $this->redirect($this->generateUrl('dezull_help_category'));
+    }
+
+    /**
+     * Update category sequences
+     *
+     * @Route("/update-sequences", name="dezull_help_category_update_sequences")
+     * @Template()
+     */
+    public function updateSequencesAction(Request $request)
+    {
+        $sequences = $request->request->get('sequence');
+        if (!is_array($sequences)) {
+            return $this->redirect($this->generateUrl('dezull_help_category'));
+        }
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('DezullHelpBundle:HelpCategory');
+
+        foreach ($sequences as $categoryId => $sequence) {
+            $category = $repo->find($categoryId);
+            if (!$category) continue;
+
+            $category->setSequence((int) $sequence);
+            $em->persist($category);
+        }
+
+        $em->flush();
 
         return $this->redirect($this->generateUrl('dezull_help_category'));
     }

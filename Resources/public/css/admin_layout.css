@@ -200,3 +200,11 @@ table.record_properties th {
 #topicForm button[type=submit] {
     margin-top: 10px;
 }
+
+.alignCenter {
+    text-align: center;
+}
+
+input.narrowWidth {
+    width: 2em;
+}

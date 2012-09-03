@@ -17,22 +17,28 @@
 </div>
 
 <div id="contentInner">
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr class="{{ loop.index is odd ? "odd" : "even" }}">
-                <td>{{ loop.index }}</td>
-                <td><a href="{{ path('dezull_help_category_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <form method="post" action="{{ path('dezull_help_category_update_sequences') }}">
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th><input type="submit" name="submit" value="Save Order" /></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                    <td>{{ loop.index }}</td>
+                    <td><a href="{{ path('dezull_help_category_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                    <td class="alignCenter">
+                        <input type="text" name="sequence[{{ entity.id }}]" class="narrowWidth" value="{{ entity.sequence }}" />
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </form>
 </div>
 
 {% endblock %}
