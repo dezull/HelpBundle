@@ -5,16 +5,13 @@
 <h1>New Topic</h1>
 
 <div id="contentInner">
+    <div>
+        <a class="middle" href="{{ path('dezull_help_category_edit', { id: topic.category.id }) }}">Back to the list</a>
+    </div>
     <form id="topicForm" action="{{ path('dezull_help_topic_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <div class="clear"></div>
+        {% include "DezullHelpBundle:HelpTopic:_form.html.twig" with { form: form } %}
         <button type="submit">Create</button>
     </form>
-
-</div>
-
-<div id="actionBar">
-    <a class="middle" href="{{ path('dezull_help_category_edit', { id: topic.category.id }) }}">Back to the list</a>
 </div>
 
 {% endblock %}

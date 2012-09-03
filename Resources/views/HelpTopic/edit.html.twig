@@ -16,10 +16,8 @@
     <div>
         <a class="middle" href="{{ path('dezull_help_category_edit', { id: topic.category.id }) }}">Back to the list</a>
     </div>
-
     <form id="topicForm" action="{{ path('dezull_help_topic_update', { 'id': topic.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-        {{ form_widget(edit_form) }}
-        <div class="clear"></div>
+        {% include "DezullHelpBundle:HelpTopic:_form.html.twig" with { form: edit_form } %}
         <button type="submit">Update</button>
     </form>
 </div>

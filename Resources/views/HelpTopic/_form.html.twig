@@ -1,0 +1,18 @@
+<div class="widgetRow">
+    <div class="formErrors">{{ form_errors(form.title) }}</div>
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+</div>
+
+<div class="widgetRow">
+    {{ form_label(form.category) }}
+    {{ form_widget(form.category) }}
+</div>
+
+<div class="widgetRow">
+    {{ form_widget(form.content) }}
+</div>
+
+{{ form_rest(form) }}
+
+<div class="clear"></div>

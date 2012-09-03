@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Dezull\Bundle\HelpBundle\Entity\HelpTopic
  *
- * @ORM\Table(name="help_topic")
- * @ORM\Entity()
+ * @ORM\Table(name="help_topic", uniqueConstraints={@ORM\UniqueConstraint(name="title_idx", columns={"title"})})
+ * @ORM\Entity(repositoryClass="Dezull\Bundle\HelpBundle\Entity\HelpTopicRepository")
  */
 class HelpTopic
 {
@@ -44,6 +44,13 @@ class HelpTopic
      * })
      */
     private $category;
+
+    /**
+     * @var int $sequence
+     *
+     * @ORM\Column(name="sequence", type="smallint", length=3)
+     */
+    private $sequence;
 
     /**
      */
@@ -118,6 +125,26 @@ class HelpTopic
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set sequence
+     *
+     * @param int $sequence
+     */
+    public function setSequence($sequence)
+    {
+        $this->sequence = $sequence;
+    }
+
+    /**
+     * Get sequence
+     *
+     * @return int 
+     */
+    public function getSequence()
+    {
+        return $this->sequence;
     }
 
     public function setTranslatableLocale($locale)
