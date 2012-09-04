@@ -232,6 +232,7 @@ class HelpTopicController extends Controller
      * Update topic sequences
      *
      * @Route("/update-sequences/{categoryId}", name="dezull_help_topic_update_sequences")
+     * @Method("post")
      * @Template()
      */
     public function updateSequencesAction(Request $request, $categoryId)
@@ -266,6 +267,19 @@ class HelpTopicController extends Controller
         )));
     }
 
+    /**
+     * List topic by category Id
+     *
+     * @Template("DezullHelpBundle:HelpTopic:_list.html.twig")
+     */
+    public function listByCategoryAction(Request $request, $categoryId)
+    {
+        $topics = $this->getDoctrine()->getEntityManager()
+            ->getRepository('DezullHelpBundle:HelpTopic')
+            ->findByCategoryOrderBySequence($categoryId);
+
+        return compact('categoryId', 'topics');
+    }
 
     private function handleUploadedImage($uploaded)
     {

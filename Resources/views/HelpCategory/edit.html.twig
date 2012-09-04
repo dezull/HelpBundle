@@ -29,9 +29,7 @@
     </div>
 
     <div id="topicList">
-        {% if topics is defined %}
-            {% include "DezullHelpBundle:HelpTopic:_list.html.twig" with { topics: topics, categoryId: category.id } %}
-        {% endif %}
+        {% render "DezullHelpBundle:HelpTopic:listByCategory" with { categoryId: category.id } %}
     </div>
 </div>
 

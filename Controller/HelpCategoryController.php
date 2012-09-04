@@ -28,7 +28,7 @@ class HelpCategoryController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $form = $this->createForm(new HelpCategoryType(), new HelpCategory());
-        $entities = $em->getRepository('DezullHelpBundle:HelpCategory')->findAll();
+        $entities = $em->getRepository('DezullHelpBundle:HelpCategory')->findAllOrderBySequence();
 
         return array(
             'entities' => $entities,
@@ -88,13 +88,10 @@ class HelpCategoryController extends Controller
         $editForm = $this->createForm(new HelpCategoryType(), $category);
         $deleteForm = $this->createDeleteForm($id);
 
-        $topics = $em->getRepository('DezullHelpBundle:HelpTopic')->findByCategory($id);
-
         return array(
             'category' => $category,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'topics' => $topics,
         );
     }
 

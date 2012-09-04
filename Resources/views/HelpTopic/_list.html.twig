@@ -2,21 +2,19 @@
     <table class="records_list">
         <thead>
             <tr>
-                <th>No.</th>
+                <th><input type="submit" name="submit" value="Save Order" /></th>
                 <th>Topic</th>
                 <th></th>
-                <th><input type="submit" name="submit" value="Save Order" /></th>
             </tr>
         </thead>
         <tbody>
             {% for topic in topics %}
                 <tr class="{{ loop.index is odd ? "odd" : "even" }}">
-                    <td>{{ loop.index }}</td>
-                    <td><a href="{{ path('dezull_help_topic_show', { id: topic.id }) }}">{{ topic.title }}</a></td>
-                    <td><a href="{{ path('dezull_help_topic_edit', { id: topic.id }) }}">Edit</a></td>
                     <td class="alignCenter">
                         <input type="text" name="sequence[{{ topic.id }}]" class="narrowWidth" value="{{ topic.sequence }}" />
                     </td>
+                    <td><a href="{{ path('dezull_help_topic_show', { id: topic.id }) }}">{{ topic.title }}</a></td>
+                    <td><a href="{{ path('dezull_help_topic_edit', { id: topic.id }) }}">Edit</a></td>
                 </tr>
             {% endfor %}
         </tbody>
