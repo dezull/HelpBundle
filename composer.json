@@ -1,7 +1,7 @@
 {
     "name": "dezull/help-bundle",
     "type": "symfony-bundle",
-    "description": "Logging for PHP 5.3",
+    "description": "Documentation browser/generator for Symfony2",
     "keywords": ["help","Documentation generator"],
     "homepage": "https://github.com/dezull/HelpBundle",
     "license": "MIT",
