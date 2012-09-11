@@ -10,9 +10,9 @@ dezull_help_browser_topic:
 # HelpCategory
 _dezull_help_category:
     prefix: /admin/help/category
-    resource: "@DezullHelpBundle/Resources/config/routing_category.yml"
+    resource: "@DezullHelpBundle/Resources/config/routing/category.yml"
 
 # HelpTopic
 _dezull_help_topic:
     prefix: /admin/help/topic
-    resource: "@DezullHelpBundle/Resources/config/routing_topic.yml"
+    resource: "@DezullHelpBundle/Resources/config/routing/topic.yml"
