@@ -7,7 +7,7 @@
                     {% if selectTopicId == topic.id %}
                         <li class="current">{{ topic.title }}</li>
                     {% else %}
-                        <li><a href="{{ path('dezull_help_browser_index', {title: topic.title }) }}">{{ topic.title }}</a></li>
+                        <li><a href="{{ path('dezull_help_browser_topic', {title: topic.title }) }}">{{ topic.title }}</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

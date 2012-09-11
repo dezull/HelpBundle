@@ -3,9 +3,6 @@
 namespace Dezull\Bundle\HelpBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Dezull\Bundle\HelpBundle\Entity\HelpTopic;
@@ -13,16 +10,11 @@ use Dezull\Bundle\HelpBundle\Form\HelpTopicType;
 
 /**
  * HelpTopic controller.
- *
- * @Route("/topic")
  */
 class HelpTopicController extends Controller
 {
     /**
      * Finds and displays a HelpTopic entity.
-     *
-     * @Route("/{id}/show", name="dezull_help_topic_show")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -36,17 +28,14 @@ class HelpTopicController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('DezullHelpBundle:HelpTopic:show.html.twig', array(
             'topic' => $topic,
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
      * Displays a form to create a new HelpTopic entity.
-     *
-     * @Route("/{categoryId}/new", name="dezull_help_topic_new")
-     * @Template()
      */
     public function newAction($categoryId)
     {
@@ -60,18 +49,14 @@ class HelpTopicController extends Controller
         $topic->setCategory($category);
         $form = $this->createForm($this->getForm(), $topic);
 
-        return array(
+        return $this->render('DezullHelpBundle:HelpTopic:new.html.twig', array(
             'topic' => $topic,
             'form' => $form->createView()
-        );
+        ));
     }
 
     /**
      * Creates a new HelpTopic entity.
-     *
-     * @Route("/create", name="dezull_help_topic_create")
-     * @Method("post")
-     * @Template("DezullHelpBundle:HelpTopic:new.html.twig")
      */
     public function createAction()
     {
@@ -93,17 +78,14 @@ class HelpTopicController extends Controller
             return $this->redirect($this->generateUrl('dezull_help_topic_show', array('id' => $topic->getId())));
         }
 
-        return array(
+        return $this->render('DezullHelpBundle:HelpTopic:new.html.twig', array(
             'topic' => $topic,
             'form' => $form->createView()
-        );
+        ));
     }
 
     /**
      * Displays a form to edit an existing HelpTopic entity.
-     *
-     * @Route("/{id}/edit", name="dezull_help_topic_edit")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -118,19 +100,15 @@ class HelpTopicController extends Controller
         $editForm = $this->createForm($this->getForm(), $topic);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('DezullHelpBundle:HelpTopic:edit.html.twig', array(
             'topic' => $topic,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
      * Edits an existing HelpTopic entity.
-     *
-     * @Route("/{id}/update", name="dezull_help_topic_update")
-     * @Method("post")
-     * @Template("DezullHelpBundle:HelpTopic:edit.html.twig")
      */
     public function updateAction($id)
     {
@@ -156,18 +134,15 @@ class HelpTopicController extends Controller
             return $this->redirect($this->generateUrl('dezull_help_topic_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('DezullHelpBundle:HelpTopic:edit.html.twig', array(
             'topic' => $topic,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
      * Deletes a HelpTopic entity.
-     *
-     * @Route("/{id}/delete", name="dezull_help_topic_delete")
-     * @Method("post")
      */
     public function deleteAction($id)
     {
@@ -199,8 +174,6 @@ class HelpTopicController extends Controller
 
     /**
      * Handles image upload
-     *
-     * @Route("/upload-image", name="dezull_help_topic_image_upload")
      */
     public function uploadImageAction(Request $request)
     {
@@ -230,10 +203,6 @@ class HelpTopicController extends Controller
 
     /**
      * Update topic sequences
-     *
-     * @Route("/update-sequences/{categoryId}", name="dezull_help_topic_update_sequences")
-     * @Method("post")
-     * @Template()
      */
     public function updateSequencesAction(Request $request, $categoryId)
     {
@@ -269,8 +238,6 @@ class HelpTopicController extends Controller
 
     /**
      * List topic by category Id
-     *
-     * @Template("DezullHelpBundle:HelpTopic:_list.html.twig")
      */
     public function listByCategoryAction(Request $request, $categoryId)
     {
@@ -278,7 +245,10 @@ class HelpTopicController extends Controller
             ->getRepository('DezullHelpBundle:HelpTopic')
             ->findByCategoryOrderBySequence($categoryId);
 
-        return compact('categoryId', 'topics');
+        return $this->render('DezullHelpBundle:HelpTopic:_list.html.twig', array(
+            'categoryId' => $categoryId,
+            'topics' => $topics,
+        ));
     }
 
     private function handleUploadedImage($uploaded)

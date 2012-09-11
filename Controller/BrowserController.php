@@ -3,9 +3,6 @@
 namespace Dezull\Bundle\HelpBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Dezull\Bundle\HelpBundle\Entity\HelpTopic;
 use Dezull\Bundle\HelpBundle\Form\HelpTopicType;
 
@@ -18,10 +15,6 @@ class BrowserController extends Controller
      * Show topic
      *
      * @param string $title Topic title
-     *
-     * @Route("/", name="dezull_help_browser_index_notitle")
-     * @Route("/!{title}", name="dezull_help_browser_index")
-     * @Template()
      */
     public function indexAction($title = null)
     {
@@ -36,17 +29,17 @@ class BrowserController extends Controller
             }
         }
 
-        return compact('topic');
+        return $this->render('DezullHelpBundle:Browser:index.html.twig', array(
+            'topic' => $topic,
+        ));
     }
 
     /**
      * List categories & topics
      *
-     * @Route("/topicTree", name="dezull_help_browser_topictree")
-     * @Route("/topicTree/{selectTopicId}", name="dezull_help_browser_topictree_selected")
-     * @Template()
+     * @param int $selectTopicId Topic id
      */
-    public function topicTreeAction($selectTopicId)
+    public function topicTreeAction($selectTopicId = null)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -58,9 +51,9 @@ class BrowserController extends Controller
             $tree[$category->getName()] = $topicRepo->findByCategoryOrderBySequence($category->getId());
         }
 
-        return array(
+        return $this->render('DezullHelpBundle:Browser:topicTree.html.twig', array(
             'tree' => $tree,
             'selectTopicId' => $selectTopicId,
-        );
+        ));
     }
 }
