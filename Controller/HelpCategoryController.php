@@ -14,8 +14,10 @@ class HelpCategoryController extends Controller
 {
     /**
      * Lists all HelpCategory entities.
+     *
+     * @return Response A Response instance
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -30,8 +32,10 @@ class HelpCategoryController extends Controller
 
     /**
      * Creates a new HelpCategory entity.
+     *
+     * @return Response A Response instance
      */
-    public function createAction(Request $request)
+    public function createAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -40,7 +44,7 @@ class HelpCategoryController extends Controller
         $category->setSequence($repo->getMaxSequence() + 1);
 
         $form = $this->createForm(new HelpCategoryType(), $category);
-        $form->bindRequest($request);
+        $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {
             $em->persist($category);
@@ -59,6 +63,9 @@ class HelpCategoryController extends Controller
 
     /**
      * Displays a form to edit an existing HelpCategory entity.
+     *
+     * @param int $id HelpCategory Id
+     * @return Response A Response instance
      */
     public function editAction($id)
     {
@@ -82,6 +89,9 @@ class HelpCategoryController extends Controller
 
     /**
      * Edits an existing HelpCategory entity.
+     *
+     * @param int $id HelpCategory Id
+     * @return Response A Response instance
      */
     public function updateAction($id)
     {
@@ -116,6 +126,9 @@ class HelpCategoryController extends Controller
 
     /**
      * Deletes a HelpCategory entity.
+     *
+     * @param int $id HelpCategory Id
+     * @return Response A Response instance
      */
     public function deleteAction($id)
     {
@@ -148,9 +161,12 @@ class HelpCategoryController extends Controller
 
     /**
      * Update category sequences
+     *
+     * @return Response A Response instance
      */
-    public function updateSequencesAction(Request $request)
+    public function updateSequencesAction()
     {
+        $request = $this->get('request');
         $sequences = $request->request->get('sequence');
         if (!is_array($sequences)) {
             return $this->redirect($this->generateUrl('dezull_help_category'));

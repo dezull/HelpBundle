@@ -15,6 +15,7 @@ class BrowserController extends Controller
      * Show topic
      *
      * @param string $title Topic title
+     * @return Response A Response instance
      */
     public function indexAction($title = null)
     {
@@ -38,6 +39,7 @@ class BrowserController extends Controller
      * List categories & topics
      *
      * @param int $selectTopicId Topic id
+     * @return Response A Response instance
      */
     public function topicTreeAction($selectTopicId = null)
     {
