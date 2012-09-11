@@ -1,0 +1,82 @@
+# HelpCategory
+dezull_help_category:
+    pattern: /category
+    defaults: { _controller: DezullHelpBundle:HelpCategory:index }
+
+dezull_help_category_create:
+    pattern: /category/create
+    defaults: { _controller: DezullHelpBundle:HelpCategory:create }
+    requirements:
+        _method: POST
+
+dezull_help_category_edit:
+    pattern: /category/{id}/edit
+    defaults: { _controller: DezullHelpBundle:HelpCategory:edit }
+    requirements:
+        id: \d+
+
+dezull_help_category_update:
+    pattern: /category/{id}/update
+    defaults: { _controller: DezullHelpBundle:HelpCategory:update }
+    requirements:
+        _method: POST
+        id: \d+
+
+dezull_help_category_delete:
+    pattern: /category/{id}/delete
+    defaults: { _controller: DezullHelpBundle:HelpCategory:delete }
+    requirements:
+        _method: POST
+        id: \d+
+
+dezull_help_category_update_sequences:
+    pattern: /category/update-sequences
+    defaults: { _controller: DezullHelpBundle:HelpCategory:updateSequences }
+    requirements:
+        _method: POST
+
+# HelpTopic
+dezull_help_topic_show:
+    pattern: /topic/{id}/show
+    defaults: { _controller: DezullHelpBundle:HelpTopic:show }
+
+dezull_help_topic_new:
+    pattern: /topic/{categoryId}/new
+    defaults: { _controller: DezullHelpBundle:HelpTopic:new }
+    requirements:
+        id: \d+
+
+dezull_help_topic_create:
+    pattern: /topic/create
+    defaults: { _controller: DezullHelpBundle:HelpTopic:create }
+    requirements:
+        _method: POST
+
+dezull_help_topic_edit:
+    pattern: /topic/{id}/edit
+    defaults: { _controller: DezullHelpBundle:HelpTopic:edit }
+
+dezull_help_topic_update:
+    pattern: /topic/{id}/update
+    defaults: { _controller: DezullHelpBundle:HelpTopic:update }
+    requirements:
+        _method: POST
+        id: \d+
+
+dezull_help_topic_delete:
+    pattern: /topic/{id}/delete
+    defaults: { _controller: DezullHelpBundle:HelpTopic:delete }
+    requirements:
+        _method: POST
+        id: \d+
+
+dezull_help_topic_image_upload:
+    pattern: /topic/upload-image
+    defaults: { _controller: DezullHelpBundle:HelpTopic:uploadImage }
+
+dezull_help_topic_update_sequences:
+    pattern: /topic/{categoryId}/update-sequences
+    defaults: { _controller: DezullHelpBundle:HelpTopic:updateSequences }
+    requirements:
+        _method: POST
+        categoryId: \d+

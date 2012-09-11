@@ -7,12 +7,7 @@ dezull_help_browser_topic:
     pattern: /help/!{title}
     defaults: { _controller: DezullHelpBundle:Browser:index }
 
-# HelpCategory
-_dezull_help_category:
-    prefix: /admin/help/category
-    resource: "@DezullHelpBundle/Resources/config/routing/category.yml"
-
-# HelpTopic
-_dezull_help_topic:
-    prefix: /admin/help/topic
-    resource: "@DezullHelpBundle/Resources/config/routing/topic.yml"
+# Admin
+_dezull_help_admin:
+    prefix: /admin/help
+    resource: "@DezullHelpBundle/Resources/config/routing/admin.yml"
