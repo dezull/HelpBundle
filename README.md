@@ -64,7 +64,16 @@ This bundle provides interface for viewing web application's documentation or he
 
 ### Using composer.json
 
-composer.json not yet added
+#### 1. Add the bundle to composer.json
+
+    "require": {
+        ...,
+        "dezull/help-bundle": "1.0.1"
+    },
+
+#### 2. Update the dependencies
+
+    $ composer.phar update
 
 
 ## Usage
