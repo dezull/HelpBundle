@@ -4,8 +4,6 @@ Help/Documentation bundle for Symfony2
 
 **Incompatible with Symfony 2.1.x**
 
-**This bundle is far, far away from being complete. Things are likely to change (and break).**
-
 This bundle provides interface for viewing web application's documentation or help browser. The administration backend will allow users to manage documentation content. The included frontend template use two-pane layout to show help topics & content.
 
 ## Dependencies
@@ -48,25 +46,15 @@ This bundle provides interface for viewing web application's documentation or he
 
 #### 5. Add routes. Customize to suite your application.
 
+    # This is the only required route need
+    DezullHelpBundle:
+        prefix: /prefix
+        resource: "@DezullHelpBundle/Resources/config/routing/main.yml"
+
     _help_topic:
         type:     annotation
         pattern: /help/!{title}
         defaults: { _controller: DezullHelpBundle:Browser:index }
-
-    _help_topic_home:
-        type:     annotation
-        prefix: /help
-        resource: "@DezullHelpBundle/Controller/BrowserController.php"
-
-    _help_topic_admin_category:
-        type:     annotation
-        prefix: /admin/help
-        resource: "@DezullHelpBundle/Controller/HelpCategoryController.php"
-
-    _help_topic_admin_topic:
-        type:     annotation
-        prefix: /admin/help
-        resource: "@DezullHelpBundle/Controller/HelpTopicController.php"
 
 #### 6. Install required tables into database, for example:
 
