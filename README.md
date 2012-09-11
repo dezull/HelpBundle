@@ -2,6 +2,8 @@
 
 Help/Documentation bundle for Symfony2
 
+**Incompatible with Symfony 2.1.x**
+
 **This bundle is far, far away from being complete. Things are likely to change (and break).**
 
 This bundle provides interface for viewing web application's documentation or help browser. The administration backend will allow users to manage documentation content. The included frontend template use two-pane layout to show help topics & content.
