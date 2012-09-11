@@ -1,4 +1,18 @@
-DezullHelpBundle:
-    resource: "@DezullHelpBundle/Controller/"
-    type:     annotation
-    prefix:   /
+# Help Browser
+dezull_help_browser_home:
+    pattern: /help
+    defaults: { _controller: DezullHelpBundle:Browser:index }
+
+dezull_help_browser_topic:
+    pattern: /help/!{title}
+    defaults: { _controller: DezullHelpBundle:Browser:index }
+
+# HelpCategory
+_dezull_help_category:
+    prefix: /admin/help/category
+    resource: "@DezullHelpBundle/Resources/config/routing_category.yml"
+
+# HelpTopic
+_dezull_help_topic:
+    prefix: /admin/help/topic
+    resource: "@DezullHelpBundle/Resources/config/routing_topic.yml"

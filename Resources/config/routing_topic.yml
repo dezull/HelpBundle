@@ -1,0 +1,44 @@
+dezull_help_topic_show:
+    pattern: /{id}/show
+    defaults: { _controller: DezullHelpBundle:HelpTopic:show }
+
+dezull_help_topic_new:
+    pattern: /{categoryId}/new
+    defaults: { _controller: DezullHelpBundle:HelpTopic:new }
+    requirements:
+        id: \d+
+
+dezull_help_topic_create:
+    pattern: /create
+    defaults: { _controller: DezullHelpBundle:HelpTopic:create }
+    requirements:
+        _method: POST
+
+dezull_help_topic_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: DezullHelpBundle:HelpTopic:edit }
+
+dezull_help_topic_update:
+    pattern: /{id}/update
+    defaults: { _controller: DezullHelpBundle:HelpTopic:update }
+    requirements:
+        _method: POST
+        id: \d+
+
+dezull_help_topic_delete:
+    pattern: /{id}/delete
+    defaults: { _controller: DezullHelpBundle:HelpTopic:delete }
+    requirements:
+        _method: POST
+        id: \d+
+
+dezull_help_topic_image_upload:
+    pattern: /upload-image
+    defaults: { _controller: DezullHelpBundle:HelpTopic:uploadImage }
+
+dezull_help_topic_update_sequences:
+    pattern: /{categoryId}/update-sequences
+    defaults: { _controller: DezullHelpBundle:HelpTopic:updateSequences }
+    requirements:
+        _method: POST
+        categoryId: \d+
