@@ -13,9 +13,9 @@
         }
     ],
     "require": {
-        "symfony/symfony-framework": ">=2.0.7",
+        "symfony/framework-bundle": ">=2.0.7",
         "doctrine/common": ">=2.0",
-        "symfony/doctrine-bundle": "*"
+        "doctrine/doctrine-bundle": "*"
     },
     "suggest": {
         "Trsteel/ckeditor-bundle": "Provides a better text editor"
