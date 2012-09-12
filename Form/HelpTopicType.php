@@ -29,12 +29,14 @@ class HelpTopicType extends AbstractType
             ))
             ->add('content', 'ckeditor', array(
                 'transformers'           => array('strip_js', 'strip_css', 'strip_comments', 'strip_tags'),
-                'toolbar'                => array('document', 'insert', 'basicstyles', 'styles', 'paragraph', 'links'),
+                'toolbar'                => array('document', 'clipboard', 'insert', 'basicstyles', 'styles', 'colors', 'paragraph', 'links'),
                 'toolbar_groups'         => array(
                     'document' => array('Source'),
+                    'clipboard' => array('Undo', 'Redo'),
                     'insert' => array('Image', 'Table', 'HorizontalRule'),
                     'styles' => array('Format'),
                     'links' => array('Link', 'Unlink'),
+                    'colors' => array('TextColor', 'BGColor'),
                 ),
                 'ui_color'               => '#fff',
                 'startup_outline_blocks' => false,
